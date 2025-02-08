@@ -75,7 +75,6 @@ for y in range(len(maze)):
 
 
 def doors_to_text(door: dict):
-    h = 2
     w = 3
     up = " " * door["up"] + "#" * (1 - door["up"])
     down = " " * door["down"] + "#" * (1 - door["down"])
@@ -84,6 +83,7 @@ def doors_to_text(door: dict):
 
     text = [
         "#" + w * up + "#",
+        # left + w * " " + right,
         left + w * " " + right,
         left + w * " " + right,
         "#" + w * down + "#",
@@ -102,6 +102,8 @@ for y in range(len(maze)):
         for i, line in enumerate(next_text):
             render[-1][i] = render[-1][i] + line
 
+
+render[-1][-2] = "S" + render[-1][-2][1:-1] + "E"
 
 for chunk in render:
     for line in chunk:
